@@ -1,9 +1,15 @@
 import { Browser, Page } from 'puppeteer';
 import { ControlsLayer } from './controls.layer';
+import { CreateConfig } from '../../config/create-config';
 
 export class BusinessLayer extends ControlsLayer {
-  constructor(public browser: Browser, public page: Page) {
-    super(browser, page);
+  constructor(
+    public browser: Browser,
+    public page: Page,
+    session?: string,
+    options?: CreateConfig
+  ) {
+    super(browser, page, session, options);
   }
 
   /**
@@ -33,7 +39,8 @@ export class BusinessLayer extends ControlsLayer {
     productId: string
   ) {
     return this.page.evaluate(
-      ({ to, base64, businessId, caption, productId }) => WAPI.sendImageWithProduct(base64, to, caption, businessId, productId),
+      ({ to, base64, businessId, caption, productId }) =>
+        WAPI.sendImageWithProduct(base64, to, caption, businessId, productId),
       { to, base64, businessId, caption, productId }
     );
   }
