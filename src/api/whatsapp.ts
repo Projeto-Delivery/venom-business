@@ -1,5 +1,5 @@
 import { Page, Browser } from 'puppeteer';
-import { ControlsLayer } from './layers/controls.layer';
+import { BusinessLayer } from './layers/business.layer';
 import { Message } from './model';
 import { magix, timeout, makeOptions } from './helpers/decrypt';
 import { useragentOverride } from '../config/WAuserAgente';
@@ -8,7 +8,7 @@ import axios from 'axios';
 import * as path from 'path';
 import fs from 'fs/promises';
 
-export class Whatsapp extends ControlsLayer {
+export class Whatsapp extends BusinessLayer {
   constructor(
     public browser: Browser,
     public page: Page,
